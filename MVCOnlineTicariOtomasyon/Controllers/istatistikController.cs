@@ -50,5 +50,54 @@ namespace MVCOnlineTicariOtomasyon.Controllers
             ViewBag.d16 = todayCase;
             return View();
         }
+        public ActionResult KolayTablolar()
+        {
+            var sorgu = from x in c.Caris
+                        group x by x.CariSehir into g
+                        orderby g.Count() descending, g.Key ascending 
+                        select new SinifGrup
+                        {
+                            Sehir = g.Key,
+                            Sayi = g.Count(),
+                        };
+
+            return View(sorgu.ToList());
+
+
+        }
+        public PartialViewResult partial1()
+        {
+            var sorgu2 = from x in c.Personels
+                         group x by x.Departman.DepartmanAd into g
+                         orderby g.Count() descending, g.Key ascending
+                         select new SinifGrup2
+                         {
+                             Departman = g.Key,
+                             Sayi = g.Count(),
+                         };
+            return PartialView(sorgu2.ToList());
+        }
+        public PartialViewResult partial2()
+        {
+            var sorgu3 = c.Caris.ToList();
+            return PartialView(sorgu3);
+        }
+        public PartialViewResult partial3()
+        {
+            var sorgu4=c.Uruns.ToList();
+            return PartialView(sorgu4);
+        }
+        public PartialViewResult partial4()
+        {
+            var sorgu4 = from x in c.Uruns
+                         group x by x.Marka into g
+                         orderby g.Count() descending, g.Key ascending
+                         select new SinifGrup3
+                         {
+                             Marka = g.Key,
+                             Sayi = g.Count(),
+                         };
+            return PartialView(sorgu4.ToList());
+        }
     }
 }
