@@ -169,6 +169,7 @@
     <Compile Include="Models\Siniflar\SinifGrup2.cs" />
     <Compile Include="Models\Siniflar\SinifGrup3.cs" />
     <Compile Include="Models\Siniflar\Urun.cs" />
+    <Compile Include="Models\Siniflar\Yapilacak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2870,6 +2871,7 @@
     <Content Include="Views\istatistik\partial2.cshtml" />
     <Content Include="Views\istatistik\partial3.cshtml" />
     <Content Include="Views\istatistik\partial4.cshtml" />
+    <Content Include="Views\Personel\PersonelListe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
