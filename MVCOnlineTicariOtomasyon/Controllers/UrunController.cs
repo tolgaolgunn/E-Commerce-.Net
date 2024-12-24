@@ -11,10 +11,14 @@ namespace MVCOnlineTicariOtomasyon.Controllers
     {
         // GET: Urun
         Context c=new Context();
-        public ActionResult Index()
+        public ActionResult Index(string p)
         {
-            var urunler = c.Uruns.Where(x => x.Durum == true).ToList();
-            return View(urunler);
+            var urunler = from x in c.Uruns select x;
+            if (!string.IsNullOrEmpty(p))
+            {
+                urunler = urunler.Where(y => y.UrunAD.Contains(p));
+            }
+            return View(urunler.ToList());
         }
         [HttpGet]
         public ActionResult UrunEkle()
@@ -72,6 +76,27 @@ namespace MVCOnlineTicariOtomasyon.Controllers
         {
             var deger=c.Uruns.ToList();
             return View(deger);
+        }
+        [HttpGet]
+        public ActionResult SatisYap(int id)
+        {
+            List<SelectListItem> deger1 = (from x in c.Personels.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.PersonelAd + " " + x.PersonelSoyad,
+                                               Value = x.PersonelID.ToString(),
+                                           }).ToList();
+            ViewBag.dgr1 = deger1;
+            var deger2 = c.Uruns.Find(id);
+            ViewBag.dgr2 = deger2.UrunID;
+            ViewBag.dgr3 = deger2.SatisFiyat;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SatisYap(SatisHareket s)
+        {
+            
+            return View();
         }
     }
 }

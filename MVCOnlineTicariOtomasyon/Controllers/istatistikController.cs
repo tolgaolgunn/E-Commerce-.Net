@@ -46,7 +46,7 @@ namespace MVCOnlineTicariOtomasyon.Controllers
             DateTime today=DateTime.Today;
             var salesToday=c.SatisHarekets.Count(x=>x.Tarih==today).ToString();
             ViewBag.d15 = salesToday;
-            var todayCase = c.SatisHarekets.Where(x => x.Tarih == today).Sum(y => y.ToplamTutar).ToString();
+            var todayCase = c.SatisHarekets.Where(x => x.Tarih == today).Sum(y => (decimal?)y.ToplamTutar).ToString();
             ViewBag.d16 = todayCase;
             return View();
         }
