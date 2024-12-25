@@ -19,18 +19,25 @@
     @Html.TextBoxFor(x => x.Cariid, new {@class="form-control"})
     <br />
     @Html.LabelFor(x => x.Adet)
-    @Html.TextBoxFor(x => x.Adet, new { @class = "form-control" })
+    <input type="number" name="Adet" class="form-control" max="10" min="0" id="txt1" onkeyup="result();" />
     <br />
     @Html.LabelFor(x => x.Fiyat)
-    <input type="text" name="Fiyat" value="@ViewBag.dgr3" class="form-control" />
+    <input type="text" name="Fiyat" value="@ViewBag.dgr3" class="form-control" id="txt2" onkeyup="result(); " />
     <br />
     @Html.LabelFor(x => x.ToplamTutar)
-    @Html.TextBoxFor(x => x.ToplamTutar, new { @class = "form-control" })
+    <input type="text" name="ToplamTutar"class="form-control" id="txt3" readonly/>
     @*@Html.DropDownListFor(x => x.Kategoriid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })*@
-    <br />
-    @Html.LabelFor(x => x.Tarih)
-    @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control" })
     <br />
     <button class="btn btn-info">Satış Yap</button>
 </form>
+<script>
+    function result() {
+        var sayi1 = document.getElementById("txt1").value;
+        var sayi2 = document.getElementById("txt2").value;
+        var sonuc = parseInt(sayi1) * parseInt(sayi2);
+        if (!isNaN(sonuc)) {
+            document.getElementById("txt3").value = sonuc;
+        }
+    }
+</script>
 

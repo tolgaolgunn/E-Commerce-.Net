@@ -95,8 +95,10 @@ namespace MVCOnlineTicariOtomasyon.Controllers
         [HttpPost]
         public ActionResult SatisYap(SatisHareket s)
         {
-            
-            return View();
+            s.Tarih = DateTime.Parse(DateTime.Now.ToShortDateString());
+            c.SatisHarekets.Add(s);
+            c.SaveChanges();
+            return RedirectToAction("Index","Satis");
         }
     }
 }
